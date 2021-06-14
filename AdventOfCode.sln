@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31402.337
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode", "AdventOfCode\AdventOfCode.csproj", "{22A3450C-D558-4B9A-B610-627AC94F8E63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode.ConsoleApp", "AdventOfCode.ConsoleApp\AdventOfCode.ConsoleApp.csproj", "{5663E814-1C97-4472-A8F0-AB9FDDF04977}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22A3450C-D558-4B9A-B610-627AC94F8E63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22A3450C-D558-4B9A-B610-627AC94F8E63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22A3450C-D558-4B9A-B610-627AC94F8E63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22A3450C-D558-4B9A-B610-627AC94F8E63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5663E814-1C97-4472-A8F0-AB9FDDF04977}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5663E814-1C97-4472-A8F0-AB9FDDF04977}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5663E814-1C97-4472-A8F0-AB9FDDF04977}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5663E814-1C97-4472-A8F0-AB9FDDF04977}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EC5E29D9-A062-4767-90AD-D66EA42A0E73}
+	EndGlobalSection
+EndGlobal
