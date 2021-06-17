@@ -3,15 +3,15 @@ using System.Linq;
 
 namespace AdventOfCode.Y2015
 {
-    public class D06 : BaseDay
+    public class Day06 : BaseDay<int>
     {
-        public D06(string input) : base(2015, 1, input)
+        public Day06(string input) : base(2015, 6, input)
         {
 
         }
 
         /// <inheritdoc/>
-        public override string Part1()
+        public override int Part1()
         {
             var lines = Input.Split(new[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
             var grid = new bool[1000][];
@@ -19,7 +19,7 @@ namespace AdventOfCode.Y2015
                 grid[i] = new bool[1000];
             for (int i = 0; i < lines.Length; i++)
                 Sw(lines[i]);
-            return grid.Sum(x => x.Sum(y => y ? 1 : 0)).ToString();
+            return grid.Sum(x => x.Sum(y => y ? 1 : 0));
             void Sw(string str)
             {
                 if (str[4] == ' ')
@@ -33,14 +33,16 @@ namespace AdventOfCode.Y2015
                 {
                     for (var y3 = y1; y3 <= y2; y3++)
                     {
+#pragma warning disable IDE0075 // Simplify conditional expression
                         grid[y3][x1] = par[0] == "turnoff" ? false : par[0] == "turnon" ? true : !grid[y3][x1];
+#pragma warning restore IDE0075 // Simplify conditional expression
                     }
                 }
             }
         }
 
         /// <inheritdoc/>
-        public override string Part2()
+        public override int Part2()
         {
             var lines = Input.Split(new[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
             var grid = new int[1000][];
@@ -48,7 +50,7 @@ namespace AdventOfCode.Y2015
                 grid[i] = new int[1000];
             for (int i = 0; i < lines.Length; i++)
                 Sw(lines[i]);
-            return grid.Sum(x => x.Sum()).ToString();
+            return grid.Sum(x => x.Sum());
             void Sw(string str)
             {
                 if (str[4] == ' ')

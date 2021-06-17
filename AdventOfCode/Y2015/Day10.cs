@@ -2,15 +2,15 @@
 
 namespace AdventOfCode.Y2015
 {
-    public class D10 : BaseDay
+    public class Day10 : BaseDay<int>
     {
-        public D10(string input) : base(2015, 10, input)
+        public Day10(string input) : base(2015, 10, input)
         {
 
         }
 
         /// <inheritdoc/>
-        public override string Part1()
+        public override int Part1()
         {
             StringBuilder input = new(Input), sb = new(), temp;
             for (int ir = 0; ir < 40; ir++)
@@ -36,11 +36,11 @@ namespace AdventOfCode.Y2015
                 input = sb;
                 sb = temp;
             }
-            return input.Length.ToString();
+            return input.Length;
         }
 
         /// <inheritdoc/>
-        public override string Part2()
+        public override int Part2()
         {
             StringBuilder input = new(Input), sb = new(), temp;
             for (int ir = 0; ir < 50; ir++)
@@ -66,7 +66,7 @@ namespace AdventOfCode.Y2015
                 input = sb;
                 sb = temp;
             }
-            return input.Length.ToString();
+            return input.Length;
         }
     }
 }

@@ -3,17 +3,17 @@ using System.Collections.Generic;
 
 namespace AdventOfCode.Y2015
 {
-    public class D05 : BaseDay
+    public class Day05 : BaseDay<int>
     {
         const string aeiou = "aeiou";
 
-        public D05(string input) : base(2015, 5, input)
+        public Day05(string input) : base(2015, 5, input)
         {
 
         }
 
         /// <inheritdoc/>
-        public override string Part1()
+        public override int Part1()
         {
             var lines = Input.Split("\n", StringSplitOptions.RemoveEmptyEntries);
             int nice = 0;
@@ -22,7 +22,7 @@ namespace AdventOfCode.Y2015
                 if (isNice(lines[i]))
                     nice++;
             }
-            return nice.ToString();
+            return nice;
             static bool isNice(string str)
             {
                 var hs = new List<char>();
@@ -56,7 +56,7 @@ namespace AdventOfCode.Y2015
         }
 
         /// <inheritdoc/>
-        public override string Part2()
+        public override int Part2()
         {
             var lines = Input.Split("\n", StringSplitOptions.RemoveEmptyEntries);
             int nice = 0;
@@ -65,7 +65,7 @@ namespace AdventOfCode.Y2015
                 if (OzO(lines[i]) && Dbl(lines[i]))
                     nice++;
             }
-            return nice.ToString();
+            return nice;
         }
         static bool OzO(string str)
         {
@@ -80,7 +80,9 @@ namespace AdventOfCode.Y2015
         {
             for (int i = 2; i < str.Length; i++)
             {
+#pragma warning disable IDE0057 // Use range operator
                 if (str.Substring(i).Contains(str.Substring(i - 2, 2)))
+#pragma warning restore IDE0057 // Use range operator
                     return true;
             }
             return false;

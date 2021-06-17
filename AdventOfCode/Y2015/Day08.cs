@@ -2,15 +2,15 @@
 
 namespace AdventOfCode.Y2015
 {
-    public class D08 : BaseDay
+    public class Day08 : BaseDay<int>
     {
-        public D08(string input) : base(2015, 8, input)
+        public Day08(string input) : base(2015, 8, input)
         {
 
         }
 
         /// <inheritdoc/>
-        public override string Part1()
+        public override int Part1()
         {
             var lines = Input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
             int sum = 0;
@@ -55,11 +55,11 @@ namespace AdventOfCode.Y2015
                     }
                 }
             }
-            return sum.ToString();
+            return sum;
         }
 
         /// <inheritdoc/>
-        public override string Part2()
+        public override int Part2()
         {
             var lines = Input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
             int sum = 0;
@@ -105,7 +105,7 @@ namespace AdventOfCode.Y2015
                     }
                 }
             }
-            return (sum - 0).ToString();
+            return sum;
         }
     }
 }

@@ -3,16 +3,16 @@ using System.Linq;
 
 namespace AdventOfCode.Y2015
 {
-    public class D14 : BaseDay
+    public class Day14 : BaseDay<int>
     {
-        public D14(string input) : base(2015, 14, input)
+        public Day14(string input) : base(2015, 14, input)
         {
         }
 
-        int _time = 2503;
+        const int _time = 2503;
 
         /// <inheritdoc/>
-        public override string Part1()
+        public override int Part1()
         {
             var parsed = Input.Split(new[] { '\n', ' ' }, StringSplitOptions.RemoveEmptyEntries);
             int[][] data = new int[parsed.Length / 15][];
@@ -35,11 +35,11 @@ namespace AdventOfCode.Y2015
                     modulo = data[i][1];
                 data[i][0] = data[i][0] * (countPeriod * data[i][1] + modulo);
             }
-            return data.Max(x => x[0]).ToString();
+            return data.Max(x => x[0]);
         }
 
         /// <inheritdoc/>
-        public override string Part2()
+        public override int Part2()
         {
             var parsed = Input.Split(new[] { '\n', ' ' }, StringSplitOptions.RemoveEmptyEntries);
             int[][] data = new int[parsed.Length / 15][];
@@ -79,7 +79,7 @@ namespace AdventOfCode.Y2015
                     }
                 }
             }
-            return data.Max(x => x[^1]).ToString();
+            return data.Max(x => x[^1]);
         }
     }
 }

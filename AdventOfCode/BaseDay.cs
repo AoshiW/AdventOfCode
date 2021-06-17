@@ -2,7 +2,7 @@
 
 namespace AdventOfCode
 {
-    public abstract class BaseDay
+    public abstract class BaseDay<T>
     {
         public int Year { get; }
         public int Day { get; }
@@ -15,7 +15,7 @@ namespace AdventOfCode
             Day = day;
         }
 
-        public abstract string Part1();
-        public abstract string Part2();
+        public abstract T Part1();
+        public abstract T Part2();
     }
 }

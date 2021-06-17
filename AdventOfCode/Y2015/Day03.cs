@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
 
 namespace AdventOfCode.Y2015
 {
-    public class D03 : BaseDay
+    public class Day03 : BaseDay<int>
     {
-        public D03(string input) : base(2015, 3, input)
+        public Day03(string input) : base(2015, 3, input)
         {
 
         }
 
         /// <inheritdoc/>
-        public override string Part1()
+        public override int Part1()
         {
             var house = new HashSet<(int, int)>();
             int x = 0, y = 0;
@@ -29,10 +27,11 @@ namespace AdventOfCode.Y2015
                 }
                 house.Add((x, y));
             }
-            return house.Count.ToString();
+            return house.Count;
         }
+
         /// <inheritdoc/>
-        public override string Part2()
+        public override int Part2()
         {
             var house = new HashSet<(int, int)>();
             int x1 = 0, y1 = 0,
@@ -66,7 +65,7 @@ namespace AdventOfCode.Y2015
                 }
                 isSanta = !isSanta;
             }
-            return house.Count.ToString();
+            return house.Count;
         }
     }
 }

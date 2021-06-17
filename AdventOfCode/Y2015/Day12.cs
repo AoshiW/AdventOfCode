@@ -3,18 +3,18 @@ using System.Text.Json.Node;
 
 namespace AdventOfCode.Y2015
 {
-    public class D12 : BaseDay
+    public class Day12 : BaseDay<int>
     {
-        public D12(string input) : base(2015, 12, input)
+        public Day12(string input) : base(2015, 12, input)
         {
 
         }
 
         /// <inheritdoc/>
-        public override string Part1()
+        public override int Part1()
         {
             var json = JsonSerializer.Deserialize<JsonNode>(Input);
-            return GetSum(json).ToString();
+            return GetSum(json!);
         }
 
         static int GetSum(JsonNode node)
@@ -24,14 +24,14 @@ namespace AdventOfCode.Y2015
             {
                 for (int i = 0; i < arr.Count; i++)
                 {
-                    sum += GetSum(arr[i]);
+                    sum += GetSum(arr[i]!);
                 }
             }
             else if (node is JsonObject obj)
             {
                 foreach (var item in obj)
                 {
-                    sum += GetSum(item.Value);
+                    sum += GetSum(item.Value!);
                 }
             }
             else
@@ -42,10 +42,10 @@ namespace AdventOfCode.Y2015
         }
 
         /// <inheritdoc/>
-        public override string Part2()
+        public override int Part2()
         {
             var json = JsonSerializer.Deserialize<JsonNode>(Input);
-            return GetSum2(json).ToString();
+            return GetSum2(json!)!.Value;
         }
 
 
@@ -56,15 +56,14 @@ namespace AdventOfCode.Y2015
             {
                 for (int i = 0; i < arr.Count; i++)
                 {
-                    var val = GetSum2(arr[i]);
-                    sum += val.HasValue ? val.Value : 0;
+                    sum += GetSum2(arr[i]!) ?? 0;
                 }
             }
             else if (node is JsonObject obj)
             {
                 foreach (var item in obj)
                 {
-                    var val = GetSum2(item.Value);
+                    var val = GetSum2(item.Value!);
                     if(val is null)
                     {
                         return 0;

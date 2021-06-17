@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace AdventOfCode.Y2015
 {
-    public class D07 : BaseDay
+    public class Day07 : BaseDay<int>
     {
-        public D07(string input) : base(2015, 7, input)
+        public Day07(string input) : base(2015, 7, input)
         {
 
         }
 
         /// <inheritdoc/>
-        public override string Part1()
+        public override int Part1()
         {
             var lines = Input.Split(new[] { "\n", "->" }, StringSplitOptions.RemoveEmptyEntries);
             var dic = new Dictionary<string, object>();
@@ -20,7 +20,7 @@ namespace AdventOfCode.Y2015
                 var trim = lines[i].Trim();
                 dic.Add(lines[i + 1].Trim(), int.TryParse(trim, out var value) ? value : trim);
             }
-            return Get("a", dic).ToString();
+            return Get("a", dic);
         }
 
         static int Get(string key, Dictionary<string, object> dic)
@@ -31,7 +31,7 @@ namespace AdventOfCode.Y2015
                 return num;
             }
             var valueStr = value as string;
-            var split = valueStr.Split(new[] { " ", }, StringSplitOptions.RemoveEmptyEntries);
+            var split = valueStr!.Split(new[] { " ", }, StringSplitOptions.RemoveEmptyEntries);
             if (split.Length == 1)
             {
                 var res = Get(split[0], dic);
@@ -55,7 +55,9 @@ namespace AdventOfCode.Y2015
                     y = Get(split[2], dic);
                 }
                 int res;
+#pragma warning disable IDE0066 // Convert switch statement to expression
                 switch (split[1])
+#pragma warning restore IDE0066 // Convert switch statement to expression
                 {
                     case "AND": res= x & y; break;
                     case "OR": res = x | y; break;
@@ -69,9 +71,8 @@ namespace AdventOfCode.Y2015
         }
 
         /// <inheritdoc/>
-        public override string Part2()
+        public override int Part2()
         {
-            var sig = int.Parse(Part1());
             var lines = Input.Split(new[] { "\n", "->" }, StringSplitOptions.RemoveEmptyEntries);
             var dic = new Dictionary<string, object>();
             for (int i = 0; i < lines.Length; i += 2)
@@ -79,9 +80,8 @@ namespace AdventOfCode.Y2015
                 var trim = lines[i].Trim();
                 dic.Add(lines[i + 1].Trim(), int.TryParse(trim, out var value) ? value : trim);
             }
-            dic["b"] = sig;
-            return Get("a", dic).ToString();
-
+            dic["b"] = Part1();
+            return Get("a", dic);
         }
     }
 }

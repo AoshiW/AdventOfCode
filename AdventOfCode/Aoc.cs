@@ -10,8 +10,8 @@ namespace AdventOfCode
 {
     public class Aoc
     {
-        HttpClient _client;
-        Assembly _assembly = Assembly.GetExecutingAssembly();
+        readonly HttpClient _client;
+
         public Aoc(string session)
         {
             var baseUri = new Uri("https://adventofcode.com");
@@ -20,10 +20,9 @@ namespace AdventOfCode
             _client = new HttpClient(new HttpClientHandler() { CookieContainer = c }) { BaseAddress = baseUri };
         }
 
-        public async Task<string> GetInput(DateTime date, CancellationToken cancellationToken = default)
+        public async Task<string> GetInput(int year, int day, CancellationToken cancellationToken = default)
         {
-            ValidateDay(date);
-            var pathFile = $"cache/{date.Year}{date.Day,00}.txt";
+            var pathFile = $"cache/{year}{day,00}.txt";
             if (!File.Exists(pathFile))
             {
                 if (!Directory.Exists($"cache"))
@@ -31,41 +30,15 @@ namespace AdventOfCode
                     Console.WriteLine("Creating cache folder.");
                     Directory.CreateDirectory($"cache");
                 }
-                Console.WriteLine($"Downloading puzzle for {date.Year}{date.Day,00}");
-                var result = await _client.GetStringAsync($"/{date.Year}/day/{date.Day}/input").ConfigureAwait(false);
-                await File.WriteAllTextAsync(pathFile, result).ConfigureAwait(false);
+                Console.WriteLine($"Downloading puzzle for {year}{day,00}");
+                var result = await _client.GetStringAsync($"/{year}/day/{day}/input", cancellationToken).ConfigureAwait(false);
+                await File.WriteAllTextAsync(pathFile, result, cancellationToken).ConfigureAwait(false);
                 return result;
             }
             else
-                Console.WriteLine($"Load file from cache.");
             {
                 return await File.ReadAllTextAsync(pathFile, cancellationToken).ConfigureAwait(false); ;
             }
-        }
-
-        public async Task SolvePuzzle(DateTime date)
-        {
-            ValidateDay(date);
-            var type = _assembly.GetType($"AdventOfCode.Y{date.Year}.D{date.Day:00}");
-            if (type is null)
-            {
-                Console.WriteLine($"Not found");
-                return;
-            }
-            var input = await GetInput(date);
-            var obj = Activator.CreateInstance(type, input) as BaseDay;
-            Console.WriteLine(obj.Part1());
-            Console.WriteLine();
-            Console.WriteLine(obj.Part2());
-        }
-
-        private static void ValidateDay(DateTime date)
-        {
-            if(date.Month == 12 && date.Day>0 && date.Day < 26)
-            {
-                return;
-            }
-            throw new ArgumentException(nameof(date), "Unsuported date.");
         }
     }
 }

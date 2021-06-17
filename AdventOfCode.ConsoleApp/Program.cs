@@ -11,9 +11,10 @@ namespace AdventOfCode.ConsoleApp
         static async Task Main(string[] args)
         {
             Console.WriteLine("Hello Advent Of Code!");
-            var inp = await aoc.GetInput(new DateTime(2015, 12, 7));
-            Console.WriteLine(new D07(inp).Part1());
-            Console.WriteLine(new D07(inp).Part2());
+            var inp = await aoc.GetInput(2015, 18);
+            var d = new Day18(inp);
+            Console.WriteLine(d.Part1());
+            Console.WriteLine(d.Part2());
         }
     }
 }
